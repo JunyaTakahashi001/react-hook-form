@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import { useForm } from 'react-hook-form';
+
+/** デフォルトで利用できるバリデーションルール
+required:
+min:
+max:
+minLength:
+maxLength:
+pattern:
+validate:
+*/
+
 
 function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ログイン</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" {...register('email', { required: true })} />
+          {errors.email && <div>入力が必須の項目です</div>}
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input id="password" {...register('password')} type="password" />
+        </div>
+        <button type="submit">ログイン</button>
+      </form>
     </div>
   );
 }
