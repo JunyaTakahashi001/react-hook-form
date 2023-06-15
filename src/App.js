@@ -11,6 +11,16 @@ pattern:
 validate:
 */
 
+/** useFormのMODE一覧
+  Name	Type	Description
+  onSubmit	string	Validation is triggered on the submit event, and inputs attach onChange event listeners to re-validate themselves.
+  onBlur	string	Validation is triggered on the blur event.
+  onChange	string	Validation is triggered on the changeevent for each input, leading to multiple re-renders. Warning: this often comes with a significant impact on performance.
+  onTouched	string	Validation is initially triggered on the first blur event. After that, it is triggered on every change event.
+
+  Note: when using with Controller, make sure to wire up onBlur with the render prop.
+  all	string	Validation is triggered on both blur and change events.
+*/
 
 function App() {
   const {
@@ -19,7 +29,8 @@ function App() {
     formState: { errors },
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
-    defaultValues: { email: 'john@test.com', password: 'pass' } // デフォルトバリュー
+    defaultValues: { email: 'john@test.com', password: 'pass' }, // デフォルトバリュー
+    mode: 'onBlur',
   });
 
   const onSubmit = (data) => console.log(data);
