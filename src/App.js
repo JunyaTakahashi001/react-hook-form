@@ -19,6 +19,7 @@ function App() {
     formState: { errors },
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
+    defaultValues: { email: 'john@test.com', password: 'pass' } // デフォルトバリュー
   });
 
   const onSubmit = (data) => console.log(data);
