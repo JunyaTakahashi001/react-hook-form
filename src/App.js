@@ -1,14 +1,29 @@
 import './App.css';
 import { useForm } from 'react-hook-form';
 
+
+/** formStateのプロパティ一覧
+  errors
+  isDirty
+  dirtyFields
+  touchedFields
+  isSubmitted
+  isSubmitSuccessful
+  isSubmitting
+  submitCount
+  isValid
+  isValidating
+*/
+
+
 /** デフォルトで利用できるバリデーションルール
-required:
-min:
-max:
-minLength:
-maxLength:
-pattern:
-validate:
+  required:
+  min:
+  max:
+  minLength:
+  maxLength:
+  pattern:
+  validate:
 */
 
 /** useFormのMODE一覧
