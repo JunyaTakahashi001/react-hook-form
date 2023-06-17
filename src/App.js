@@ -27,10 +27,12 @@ function App() {
     register,
     handleSubmit,
     formState: { errors },
+    trigger, // 手動でバリデーションを行う場合に呼び出すプロパティ
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
     defaultValues: { email: 'john@test.com', password: 'pass' }, // デフォルトバリュー
-    mode: 'onBlur',
+    mode: 'onChange', // バリデーションの実行タイミング
+    reValidateMode: 'onSxubmit' //2回目以降のバリデーション実行タイミング
   });
 
   const onSubmit = (data) => console.log(data);
@@ -84,6 +86,9 @@ function App() {
           )}
         </div>
         <button type="submit">ログイン</button>
+        <button type="button" onClick={() => trigger()}>
+          バリデーション
+        </button>
       </form>
     </div>
   );
