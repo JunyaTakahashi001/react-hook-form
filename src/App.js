@@ -26,7 +26,7 @@ function App() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isDirty, errors }, // isDirtyは入力欄にアクセスし、入力欄をデフォルト値から変更するとfalseに変わる
     trigger, // 手動でバリデーションを行う場合に呼び出すプロパティ
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
@@ -85,7 +85,7 @@ function App() {
             <div>{errors.password.types.minLength}</div>
           )}
         </div>
-        <button type="submit">ログイン</button>
+        <button type="submit" disabled={!isDirty}>ログイン</button>
         <button type="button" onClick={() => trigger()}>
           バリデーション
         </button>
