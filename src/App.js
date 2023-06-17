@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 
 /** formStateのプロパティ一覧
   errors
-  isDirty
+  isDirty:入力欄にアクセスし、入力欄をデフォルト値から変更するとfalseに変わる
   dirtyFields
   touchedFields
   isSubmitted
   isSubmitSuccessful
   isSubmitting
   submitCount
-  isValid
+  isValid:バリデーションをパスしているかチェック（modeをデフォルトのonSubmitから変更必要）
   isValidating
 */
 
@@ -41,11 +41,11 @@ function App() {
   const {
     register,
     handleSubmit,
-    formState: { isDirty, errors }, // isDirtyは入力欄にアクセスし、入力欄をデフォルト値から変更するとfalseに変わる
+    formState: { isDirty, isValid, errors },
     trigger, // 手動でバリデーションを行う場合に呼び出すプロパティ
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
-    defaultValues: { email: 'john@test.com', password: 'pass' }, // デフォルトバリュー
+    defaultValues: { email: '', password: '' }, // デフォルトバリュー
     mode: 'onChange', // バリデーションの実行タイミング
     reValidateMode: 'onSxubmit' //2回目以降のバリデーション実行タイミング
   });
@@ -100,7 +100,9 @@ function App() {
             <div>{errors.password.types.minLength}</div>
           )}
         </div>
-        <button type="submit" disabled={!isDirty}>ログイン</button>
+        <button type="submit" disabled={!isDirty || !isValid}>
+          ログイン
+        </button>
         <button type="button" onClick={() => trigger()}>
           バリデーション
         </button>
