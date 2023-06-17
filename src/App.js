@@ -43,6 +43,8 @@ function App() {
     handleSubmit,
     formState: { isDirty, isValid, errors },
     trigger, // 手動でバリデーションを行う場合に呼び出すプロパティ
+    // getValues, // フィールドの入力内容を取得（submit時更新される）
+    watch // フィールドの入力内容を取得（入力の度更新される）
   } = useForm({
     criteriaMode: 'all', // 複数のエラーを取得
     defaultValues: { email: '', password: '' }, // デフォルトバリュー
@@ -68,6 +70,8 @@ function App() {
               },
             })}
           />
+          <div>{watch('email')}</div>
+          {/* <div>{getValues('email')}</div> */}
           {errors.email?.message && <div>{errors.email.message}</div>}
         </div>
         <div>
