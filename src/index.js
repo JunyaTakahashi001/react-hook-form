@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import App2 from './App2';
 import Yup from './Yup';
+import Zod from './Zod';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,6 +13,7 @@ root.render(
     <App />
     <App2 />
     <Yup />
+    <Zod />
   </React.StrictMode>
 );
 
